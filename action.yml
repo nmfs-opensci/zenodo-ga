@@ -71,7 +71,7 @@ runs:
         if [[ "${zenodo_json}" != "" ]]; then
             command="$command --zenodo-json ${zenodo_json}"
         fi
-        body > body.txt
+        ${body} > body.txt
         printf "$command\n"
         $command
 
