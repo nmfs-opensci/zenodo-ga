@@ -269,7 +269,7 @@ def upload_archive(archive, version, zenodo_json=None, doi=None, sandbox=False):
         cli.upload_archive(upload, path)
 
     # Finally, load .zenodo.json and add version
-    data = cli.upload_metadata(upload, zenodo_json, version)
+    data = cli.upload_metadata(upload, zenodo_json, version, body, html_url)
 
     # Finally, publish
     cli.publish(data)
