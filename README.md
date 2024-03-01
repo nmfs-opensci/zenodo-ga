@@ -77,10 +77,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: download archive to runner
       env:
-        tarball: ${{ github.event.release.tarball_url }}
+        zipball: ${{ github.event.release.zipball_url }}
       run: |
         name=$(basename ${tarball})        
-        curl -L $tarball > $name
+        curl -L $zipball > $name
         echo "archive=${name}" >> $GITHUB_ENV
 
     - name: Run Zenodo Deploy
