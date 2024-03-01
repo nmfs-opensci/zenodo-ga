@@ -29,6 +29,8 @@ jobs:
         archive: ${{ env.archive }}
         token: ${{ secrets.ZENODO_TOKEN }}
         doi: 10.5281/zenodo.6326822
+        body: ${{ github.event.release.body }}
+        html_url: ${{ github.event.release.html_url }}
 
     - name: View Outputs
       env:
