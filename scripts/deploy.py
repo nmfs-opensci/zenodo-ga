@@ -13,6 +13,7 @@ import sys
 from glob import glob
 from datetime import datetime
 import requests
+import markdown
 
 
 def read_file(filename):
