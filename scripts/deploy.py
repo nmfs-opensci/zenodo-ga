@@ -208,7 +208,7 @@ class Zenodo:
         for k, v in published["links"].items():
             set_env_and_output(k, v)
 
-    def upload_metadata(self, upload, zenodo_json, version):
+    def upload_metadata(self, upload, zenodo_json, version, body, html_url):
         """
         Given an upload response and zenodo json, upload new data
 
@@ -226,6 +226,10 @@ class Zenodo:
         if "upload_type" not in metadata:
             metadata["upload_type"] = "software"
         self.headers.update({"Content-Type": "application/json"})
+
+        # Update the related info to the url to the release
+        metadata["description"] = body
+        metadata['related_identifiers']=[{'identifier': html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
 
         # Make the deposit!
         url = "https://zenodo.org/api/deposit/depositions/%s" % upload["id"]
@@ -288,6 +292,8 @@ def get_parser():
     )
     upload.add_argument("--version", help="version to upload")
     upload.add_argument("--doi", help="an existing DOI to add a new version to")
+    upload.add_argument("--body", help="description of the release")
+    upload.add_argument("--html-url", dest="html_url", help="url to the release")
     return parser
 
 
@@ -310,14 +316,12 @@ def main():
     if not args.version:
         sys.exit("You must provide a software version to upload.")
 
-    args.zenodo_json['description'] = args.body
-    arg.zenodo_json['related_identifiers']=[{'identifier': args.html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
     if args.command == "upload":
         upload_archive(
             archive=args.archive,
             zenodo_json=args.zenodo_json,
             version=args.version,
-            doi=args.doi,
+            doi=args.doi
         )
 
     # We should not get here :)
