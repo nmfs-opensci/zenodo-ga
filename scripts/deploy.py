@@ -228,7 +228,9 @@ class Zenodo:
         self.headers.update({"Content-Type": "application/json"})
 
         # Update the related info to the url to the release
-        metadata["description"] = body
+        file = open("body.txt", "r")
+        content = file.read()
+        metadata["description"] = content
         metadata['related_identifiers']=[{'identifier': html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
 
         # Make the deposit!
