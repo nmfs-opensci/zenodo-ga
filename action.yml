@@ -61,8 +61,8 @@ runs:
         ACTION_PATH: ${{ github.action_path }}
         ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
-        body: ${{ inputs.body }}
-        html_url: ${{ inputs.html_url }}
+        body: ${{ github.event.release.body }}
+        html_url: ${{ github.event.release.html_url }}
       run: |
         command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url} --body ${body}"
         if [[ "${doi}" != "" ]]; then
