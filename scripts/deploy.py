@@ -310,6 +310,8 @@ def main():
     if not args.version:
         sys.exit("You must provide a software version to upload.")
 
+    args.zenodo_json['description'] = args.body
+    arg.zenodo_json['related_identifiers']=[{'identifier': args.html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
     if args.command == "upload":
         upload_archive(
             archive=args.archive,
