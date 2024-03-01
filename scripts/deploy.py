@@ -247,7 +247,7 @@ class Zenodo:
         return response.json()
 
 
-def upload_archive(archive, version, zenodo_json=None, doi=None, sandbox=False):
+def upload_archive(archive, version, body, html_url, zenodo_json=None, doi=None, sandbox=False):
     """
     Upload an archive to an existing Zenodo "versions DOI"
     """
@@ -321,7 +321,9 @@ def main():
             archive=args.archive,
             zenodo_json=args.zenodo_json,
             version=args.version,
-            doi=args.doi
+            doi=args.doi,
+            body=args.body,
+            html_url=args.html_url
         )
 
     # We should not get here :)
