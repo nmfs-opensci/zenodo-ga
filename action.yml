@@ -14,7 +14,11 @@ inputs:
     description: Path to zenodo.json to upload with metadata (must exist)
   doi:
     descripton: The DOI to create a new version from
-
+  body:
+    descripton: The release description.
+  html_url:
+    descripton: The url to the release
+    
 outputs:
   badge:
     description: badge url
@@ -57,6 +61,8 @@ runs:
         ACTION_PATH: ${{ github.action_path }}
         ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
+        body: ${{ inputs.body }}
+        html_url: ${{ inputs.html_url }}
       run: |
         command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version}"
         if [[ "${doi}" != "" ]]; then
@@ -64,6 +70,12 @@ runs:
         fi
         if [[ "${zenodo_json}" != "" ]]; then
             command="$command --zenodo-json ${zenodo_json}"
+        fi
+        if [[ "${body}" != "" ]]; then
+            command="$command --body ${body}"
+        fi
+        if [[ "${zenodo_json}" != "" ]]; then
+            command="$command --html-url ${html_url}"
         fi
         printf "$command\n"
         $command
