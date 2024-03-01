@@ -233,6 +233,13 @@ class Zenodo:
         metadata["description"] = content
         metadata['related_identifiers']=[{'identifier': html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
 
+        repo = "Rgovys/test-integration"
+        headers = {"Accept": "application/vnd.github.v3+json"}
+        repo_response = requests.get(f"https://api.github.com/repos/{repo}", headers=headers)
+        release_response = requests.get(f"https://api.github.com/repos/{repo}/releases", headers=headers)
+        latest_release = release_response.json()[0]
+        metadata["description"] = latest_release['body']
+
         # Make the deposit!
         url = "https://zenodo.org/api/deposit/depositions/%s" % upload["id"]
         response = requests.put(
