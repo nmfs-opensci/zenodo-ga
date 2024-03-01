@@ -61,7 +61,7 @@ runs:
         ACTION_PATH: ${{ github.action_path }}
         ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
-        body: '${{ github.event.release.body }}'
+        body: test
         html_url: ${{ github.event.release.html_url }}
       run: |
         command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url} --body ${body}"
@@ -71,7 +71,7 @@ runs:
         if [[ "${zenodo_json}" != "" ]]; then
             command="$command --zenodo-json ${zenodo_json}"
         fi
-        ${body} > body.txt
+        ${{ github.event.release.body }} > body.txt
         printf "$command\n"
         $command
 
