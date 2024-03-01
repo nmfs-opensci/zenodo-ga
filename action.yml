@@ -64,18 +64,12 @@ runs:
         body: ${{ inputs.body }}
         html_url: ${{ inputs.html_url }}
       run: |
-        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version}"
+        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url} --body ${body}"
         if [[ "${doi}" != "" ]]; then
             command="$command --doi ${doi}"
         fi
         if [[ "${zenodo_json}" != "" ]]; then
             command="$command --zenodo-json ${zenodo_json}"
-        fi
-        if [[ "${body}" != "" ]]; then
-            command="$command --body ${body}"
-        fi
-        if [[ "${zenodo_json}" != "" ]]; then
-            command="$command --html-url ${html_url}"
         fi
         printf "$command\n"
         $command
