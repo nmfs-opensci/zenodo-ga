@@ -1,0 +1,7 @@
+title: Required. Example super simple cff file.
+abstract: Required. This is a description.
+authors:
+  - family-names: Doe
+    given-names: Jane
+cff-version: 1.2.0
+message: If you use this software, please cite it
