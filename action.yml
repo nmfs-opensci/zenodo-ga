@@ -56,6 +56,8 @@ runs:
         pip install --user cffconvert
         cffconvert -f zenodo > zenodo.json
 
+      shell: bash
+
     - name: Deploy Zenodo
       id: deploy
       env:
