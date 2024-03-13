@@ -54,7 +54,7 @@ runs:
     - name: create zenodo.json file
       run: |
         pip install --user cffconvert
-        cffconvert -f zenodo > zenodo.json
+        cffconvert -i ${{ github.action_path }}/CITATION.cff -f zenodo > zenodo.json
 
       shell: bash
 
