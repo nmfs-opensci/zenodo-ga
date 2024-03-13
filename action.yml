@@ -2,9 +2,9 @@ name: "Zenodo Release Action"
 description: "Release zenodo metadata so you don't have to give admin hook access"
 inputs:
   zenodo_json:
-    description: Path to zenodo.json to upload with metadata (optional unless this is a new archive)
+    description: .zenodo.json or CITATION.cff file (must be valid)
   doi:
-    descripton: The DOI to create a new version from
+    descripton: The parent DOI to create a new version for
   token:
     description: zenodo token
     required: true
@@ -53,16 +53,19 @@ runs:
 
     - name: create zenodo.json file
       run: |
-        pip install --user cffconvert
-        cffconvert -f zenodo > zenodo.json
-        cat zenodo.json
+        if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
+          pip install --user cffconvert
+          cffconvert -f zenodo > zenodo.json
+          cat zenodo.json
+        else
+        fi
 
       shell: bash
 
     - name: Deploy Zenodo
       id: deploy
       env:
-        zenodo_json: zenodo.json
+        zenodo_json: ${{ inputs.zenodo_json }}
         archive: ${{ env.archive }}
         version: ${{ github.event.release.tag_name }}
         ACTION_PATH: ${{ github.action_path }}
@@ -75,8 +78,13 @@ runs:
         if [[ "${doi}" != "" ]]; then
             command="$command --doi ${doi}"
         fi
-        if [[ "${zenodo_json}" != "" ]]; then
-            command="$command --zenodo-json ${zenodo_json}"
+        if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
+          pip install --user cffconvert
+          cffconvert -f zenodo > zenodo.json
+          cat zenodo.json
+          command="$command --zenodo-json zenodo.json
+        else
+          command="$command --zenodo-json ${zenodo_json}
         fi
         echo '## Release Name: ${{ github.event.release.name }}' > body.txt
         echo '${{ github.event.release.body }}' >> body.txt
