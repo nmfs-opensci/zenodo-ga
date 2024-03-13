@@ -1,15 +1,15 @@
 {
   "upload_type": "software", 
-  "description": "This is the description.",
-  "title": "Zenodo Release Action",
+  "description": "This is a template .zenodo_json file.",
+  "title": "Template",
   "creators": [
      {
-       "affiliation": "Lawrence Livermore National Lab",
-       "name": "Vanessa Sochat"
+       "affiliation": "Here",
+       "name": "Jane Doe"
      },
      {
-       "affiliation": "Ohio SuperComputer Center",
-       "name": "Jeff Ohrstrom"
+       "affiliation": "There",
+       "name": "John Doe"
      }
   ],
   "keywords": ["zenodo", "release", "archive"],
