@@ -4,4 +4,4 @@ authors:
   - family-names: Doe
     given-names: Jane
 cff-version: 1.2.0
-message: Please cite the parent work: https://github.com/rseng/zenodo-release
+message: Please cite the parent work: rseng/zenodo-release
