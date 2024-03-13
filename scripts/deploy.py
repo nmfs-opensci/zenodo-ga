@@ -231,7 +231,8 @@ class Zenodo:
         # Update the related info to the url to the release
         file = open("body.txt", "r")
         content = file.read()
-        metadata["description"] = markdown.markdown(content)
+        metadata["title"] = metadata["title"] + " " + metadata["version"]
+        metadata["description"] = markdown.markdown(metadata["description"]) + "\n\n" + markdown.markdown("## Release Notes") + "\n" + markdown.markdown(content)
         metadata['related_identifiers']=[{'identifier': html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
 
         # Make the deposit!
