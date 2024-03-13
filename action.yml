@@ -49,6 +49,8 @@ runs:
         name=$(basename ${zipball})        
         curl -L $zipball > $name
         echo "archive=${name}" >> $GITHUB_ENV
+        
+      shell: bash
 
     - name: Deploy Zenodo
       id: deploy
