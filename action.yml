@@ -38,7 +38,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
     - name: download archive to runner
       env:
         zipball: ${{ github.event.release.zipball_url }}
