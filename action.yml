@@ -70,7 +70,7 @@ runs:
         if [[ "${zenodo_json}" != "" ]]; then
             command="$command --zenodo-json ${zenodo_json}"
         fi
-        echo '## Release Notes: ${{ github.event.release.name }}\n\n' > body.txt
+        echo '## Release Name: ${{ github.event.release.name }}' > body.txt
         echo '${{ github.event.release.body }}' >> body.txt
         printf "$command\n"
         $command
