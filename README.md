@@ -12,7 +12,7 @@ when a GitHub release is created, and without needing to enable admin webhooks. 
 
 ## New Release (no DOI)
 
-You have no entry on Zenodo yet. Use this workflow and then make a release.
+You have no entry on Zenodo yet. Use this workflow and then make a GitHub release.
 
 ```
 name: Zenodo Release
