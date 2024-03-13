@@ -326,7 +326,7 @@ def main():
             version=args.version,
             doi=args.doi,
             body=args.body,
-            html_url=args.html_url
+            html_url=args.html_url,
         )
 
     # We should not get here :)
