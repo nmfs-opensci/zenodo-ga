@@ -51,13 +51,28 @@ outputs:
 runs:
   using: "composite"
   steps:
+- uses: actions/checkout@v3
+    - name: download archive to runner
+      env:
+        zipball: ${{ github.event.release.zipball_url }}
+      run: |
+        name=$(basename ${zipball})        
+        curl -L $zipball > $name
+        echo "archive=${name}" >> $GITHUB_ENV
 
+    - name: Run Zenodo Deploy
+      uses: nmfs-opensci/zenodo-release@main
+      with:
+        token: ${{ secrets.ZENODO_TOKEN }}
+        version: ${{ github.event.release.tag_name }}
+        zenodo_json: .zenodo.json   # optional if adding to an existing record in Zenodo
+        archive: ${{ env.archive }}
     - name: Deploy Zenodo
       id: deploy
       env:
         zenodo_json: ${{ inputs.zenodo_json }}
         archive: ${{ inputs.archive }}
-        version: ${{ inputs.version }}
+        version: ${{ github.event.release.tag_name }}
         ACTION_PATH: ${{ github.action_path }}
         ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
