@@ -1,5 +1,5 @@
 # Zenodo Action
-This is a variant of [zenodo-release](https://github.com/rseng/zenodo-release) Copyright © 2022, Vanessa Sochat. This variant is focused specifically on creating a Zenodo release when a GitHub release is made.
+This is a variant of [zenodo-release](https://github.com/rseng/zenodo-release) Copyright © 2022, Vanessa Sochat. This variant is focused specifically on creating a Zenodo release when a GitHub release is made so I moved some of set-up into `action.yml` because this is only triggered by GitHub releases.
 
 This is a GitHub Action to allow you to automatically update a package on Zenodo
 when a GitHub release is created, and without needing to enable admin webhooks. To get this working you will need to:
