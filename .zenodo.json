@@ -1,6 +1,6 @@
 {
   "upload_type": "software", 
-  "description": "This is a GitHub action for releasing to Zenodo without giving webhook admin access",
+  "description": "This is the description.",
   "title": "Zenodo Release Action",
   "creators": [
      {
