@@ -232,7 +232,7 @@ class Zenodo:
         file = open("body.txt", "r")
         content = file.read()
         metadata["title"] = metadata["title"] + " " + metadata["version"]
-        metadata["description"] = markdown.markdown(metadata["description"]) + "\n\n" + markdown.markdown("## Release Notes") + "\n" + markdown.markdown(content)
+        metadata["description"] = markdown.markdown(metadata["description"]) + "\n\n" + markdown.markdown(content)
         metadata['related_identifiers']=[{'identifier': html_url, 'relation': 'isSupplementTo', 'resource_type': 'software', 'scheme': 'url'}]
 
         # Make the deposit!
