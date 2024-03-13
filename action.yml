@@ -45,7 +45,7 @@ runs:
       env:
         zipball: ${{ github.event.release.zipball_url }}
       run: |
-        name=$(basename ${zipball})        
+        name=$(basename ${zipball}).zip     
         curl -L $zipball > $name
         echo "archive=${name}" >> $GITHUB_ENV
         
