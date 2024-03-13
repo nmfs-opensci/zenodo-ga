@@ -8,10 +8,6 @@ inputs:
   token:
     description: zenodo token
     required: true
-  body:
-    description: How to construct the body of the release (zenodo, zenodo_json, release_description, append_release_description)
-  title:
-    description: How to construct the title of the release (zenodo, zenodo_json, release_title, append_release_version)
     
 outputs:
   badge:
