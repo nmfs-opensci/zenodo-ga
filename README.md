@@ -12,7 +12,7 @@ when a GitHub release is created, and without needing to enable admin webhooks. 
 
 ## New Release (no DOI)
 
-You have no entry on Zenodo yet. Use this workflow and then make a GitHub release. Then go to Zenodo and look up what DOI it created. Copy the parent DOI (all versions DOI).
+If you have no entry on Zenodo yet, then create a `zenodo.yml` file in the `.github/workflows` directory and copy this code into that file. Then make a GitHub release to trigger the GitHub Action. You can see if it worked by going to the Actions tab. Then go to Zenodo and look up what DOI it created. Copy the parent DOI (all versions DOI).
 
 ```
 name: Zenodo Release
@@ -36,7 +36,7 @@ jobs:
 
 ## Existing Release (has DOI on Zenodo)
 
-Add the `doi: ` line and make sure it is the parent DOI or the "cite all versions by using the DOI". Now when you make releases, they will be added to the Zenodo record.
+Edit your `zenodo.yml` file and add the `doi: ` line. Make sure it is the parent DOI or the "cite all versions by using the DOI". Now when you make releases, they will be added to the Zenodo record.
 
 ```
 name: Zenodo Release
