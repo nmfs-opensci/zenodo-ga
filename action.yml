@@ -54,9 +54,9 @@ runs:
     - name: create zenodo.json file
       run: |
         if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
-          pip install --user cffconvert
-          cffconvert -f zenodo > zenodo.json
-          cat zenodo.json
+            pip install --user cffconvert
+            cffconvert -f zenodo > zenodo.json
+            cat zenodo.json
         fi
 
       shell: bash
@@ -78,11 +78,11 @@ runs:
             command="$command --doi ${doi}"
         fi
         if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
-          command="$command --zenodo-json zenodo.json
-          echo "Using CITATION.cff"
+            command="$command --zenodo-json zenodo.json
+            printf "Using CITATION.cff\n"
         else
-          command="$command --zenodo-json ${zenodo_json}
-          echo "Using ${zenodo_json}"
+            command="$command --zenodo-json ${zenodo_json}
+            printf "Using ${zenodo_json}\n"
         fi
         echo '## Release Name: ${{ github.event.release.name }}' > body.txt
         echo '${{ github.event.release.body }}' >> body.txt
