@@ -4,11 +4,11 @@ This is a variant of [zenodo-release](https://github.com/rseng/zenodo-release) C
 This is a GitHub Action to allow you to automatically update a package on Zenodo
 when a GitHub release is created, and without needing to enable admin webhooks. To get this working you will need to:
 
-1. Create an account on Zenodo
-2. Under your name -> Applications -> Developer Applications -> Personal Access Tokens -> +New Token and choose both scopes for deposit
-3. Add the token to your repository secrets as `ZENODO_TOKEN`. Settings > Secrets > Actions > Repository Secret
-4. Create a .zenodo.json file (or CITATION.cff) for the root of your repository (see [template](.zenodo.json))
-5. Add the example action to your GitHub repository in the .github/workflows directory before your first release. Alternatively, create a release manually on Zenodo.
+1. Log into Zenodo
+2. Under your name -> Applications -> Developer Applications -> Personal Access Tokens, create a new token and choose both scopes for deposit
+3. Add the token to your GitHub repository secrets as `ZENODO_TOKEN`. Settings > Secrets > Actions > Repository Secret
+4. Create a .zenodo.json file (or CITATION.cff) in the root of your repository (see [template](.zenodo.json))
+5. Add the example GitHub Action below to your GitHub repository in the `.github/workflows` directory before your first release. Alternatively, create a release manually on Zenodo.
 
 ## New Release (no DOI)
 
@@ -28,7 +28,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run Zenodo Deploy
-      uses: nmfs-opensci/zenodo-ga@main
+      uses: nmfs-opensci/zenodo-gha@main
       with:
         token: ${{ secrets.ZENODO_TOKEN }}
         zenodo_json: .zenodo.json   # either a .zenodo.json file or CITATION.cff
