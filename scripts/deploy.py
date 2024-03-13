@@ -221,7 +221,7 @@ class Zenodo:
         if zenodo_json:
             metadata.update(read_json(zenodo_json))
         metadata["version"] = version
-        metadata["publication_date"] = str(datetime.today().strftime('%Y-%m-%d'))
+        metadata["publication_date"] = str(datetime.today().strftime("%Y-%m-%d"))
 
         # New .zenodo.json may be missing this
         if "upload_type" not in metadata:
