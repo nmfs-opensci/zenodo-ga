@@ -78,9 +78,6 @@ runs:
             command="$command --doi ${doi}"
         fi
         if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
-          pip install --user cffconvert
-          cffconvert -f zenodo > zenodo.json
-          cat zenodo.json
           command="$command --zenodo-json zenodo.json
         else
           command="$command --zenodo-json ${zenodo_json}
