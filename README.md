@@ -52,7 +52,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run Zenodo Deploy
-      uses: nmfs-opensci/zenodo-ga@main
+      uses: nmfs-opensci/zenodo-gha@main
       with:
         token: ${{ secrets.ZENODO_TOKEN }}
         zenodo_json: .zenodo.json   # either a .zenodo.json file or CITATION.cff
