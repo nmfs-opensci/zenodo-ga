@@ -244,7 +244,7 @@ class Zenodo:
         )
         if response.status_code != 200:
             sys.exit(
-                "Trouble uploading metadata %s, %s" % (response.status_code, response.json()),
+                "Trouble uploading metadata. There is probably something wrong with the .zenodo_json file. %s, %s" % (response.status_code, response.json()),
             )
         return response.json()
 
