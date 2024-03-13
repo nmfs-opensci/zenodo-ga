@@ -5,6 +5,9 @@ inputs:
     description: Path to zenodo.json to upload with metadata (optional unless this is a new archive)
   doi:
     descripton: The DOI to create a new version from
+  token:
+    description: zenodo token
+    required: true
     
 outputs:
   badge:
@@ -55,7 +58,7 @@ runs:
         archive: ${{ env.archive }}
         version: ${{ github.event.release.tag_name }}
         ACTION_PATH: ${{ github.action_path }}
-        ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
         html_url: ${{ github.event.release.html_url }}
       run: |
