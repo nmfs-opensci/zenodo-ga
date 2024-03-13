@@ -1,23 +1,10 @@
 name: "Zenodo Release Action"
 description: "Release zenodo metadata so you don't have to give admin hook access"
 inputs:
-  archive:
-    description: the path to the release archive
-    required: true
-  token:
-    description: zenodo token
-    required: true
-  version:
-    description: the release version
-    required: true
   zenodo_json:
-    description: Path to zenodo.json to upload with metadata (must exist)
+    description: Path to zenodo.json to upload with metadata (optional unless this is a new archive)
   doi:
     descripton: The DOI to create a new version from
-  body:
-    descripton: The release description.
-  html_url:
-    descripton: The url to the release
     
 outputs:
   badge:
@@ -51,7 +38,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-- uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: download archive to runner
       env:
         zipball: ${{ github.event.release.zipball_url }}
@@ -60,27 +47,19 @@ runs:
         curl -L $zipball > $name
         echo "archive=${name}" >> $GITHUB_ENV
 
-    - name: Run Zenodo Deploy
-      uses: nmfs-opensci/zenodo-release@main
-      with:
-        token: ${{ secrets.ZENODO_TOKEN }}
-        version: ${{ github.event.release.tag_name }}
-        zenodo_json: .zenodo.json   # optional if adding to an existing record in Zenodo
-        archive: ${{ env.archive }}
     - name: Deploy Zenodo
       id: deploy
       env:
         zenodo_json: ${{ inputs.zenodo_json }}
-        archive: ${{ inputs.archive }}
+        archive: ${{ env.archive }}
         version: ${{ github.event.release.tag_name }}
         ACTION_PATH: ${{ github.action_path }}
-        ZENODO_TOKEN: ${{ inputs.token }}
+        ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
         doi: ${{ inputs.doi }}
-        body: test
         html_url: ${{ github.event.release.html_url }}
       run: |
         pip install markdown
-        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url} --body ${body}"
+        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url}"
         if [[ "${doi}" != "" ]]; then
             command="$command --doi ${doi}"
         fi
