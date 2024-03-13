@@ -77,13 +77,10 @@ runs:
         if [[ "${doi}" != "" ]]; then
             command="$command --doi ${doi}"
         fi
-        printf "Using ${zenodo_json}\n"
         if [[ "${zenodo_json}" == "CITATION.cff" ]]; then
-            command="$command --zenodo-json zenodo.json
-            printf "Using CITATION.cff\n"
+            command="$command --zenodo-json zenodo.json"
         else
-            command="$command --zenodo-json ${zenodo_json}
-            printf "Using ${zenodo_json}\n"
+            command="$command --zenodo-json ${zenodo_json}"
         fi
         echo '## Release Name: ${{ github.event.release.name }}' > body.txt
         echo '${{ github.event.release.body }}' >> body.txt
