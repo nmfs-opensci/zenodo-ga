@@ -61,11 +61,10 @@ runs:
         ACTION_PATH: ${{ github.action_path }}
         ZENODO_TOKEN: ${{ inputs.token }}
         doi: ${{ inputs.doi }}
-        body: test
         html_url: ${{ github.event.release.html_url }}
       run: |
         pip install markdown
-        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url} --body ${body}"
+        command="python ${{ github.action_path }}/scripts/deploy.py upload ${archive} --version ${version} --html-url ${html_url}"
         if [[ "${doi}" != "" ]]; then
             command="$command --doi ${doi}"
         fi
