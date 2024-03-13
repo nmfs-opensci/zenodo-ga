@@ -57,7 +57,6 @@ runs:
           pip install --user cffconvert
           cffconvert -f zenodo > zenodo.json
           cat zenodo.json
-        else
         fi
 
       shell: bash
