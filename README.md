@@ -8,7 +8,7 @@ when a GitHub release is created, and without needing to enable admin webhooks. 
 2. Under your name -> Applications -> Developer Applications -> Personal Access Tokens, create a new token and choose both scopes for deposit
 3. Add the token to your GitHub repository secrets as `ZENODO_TOKEN`. Settings > Secrets > Actions > Repository Secret
 4. Create a .zenodo.json file (or CITATION.cff) in the root of your repository (see [template](.zenodo.json))
-5. Add the example GitHub Action below to your GitHub repository in the `.github/workflows` directory before your first release. Alternatively, create a release manually on Zenodo.
+5. Add the example GitHub Action below to your GitHub repository in the `.github/workflows` directory before your first release and use the 'New Release' instructions. Alternatively, create a release manually on Zenodo and use the 'Existing Release' instructions.
 
 ## New Release (no DOI)
 
