@@ -61,11 +61,11 @@ jobs:
 
 ## Customizing your Zenodo entry infomation
 
-This is taken from the `.zenodo.json` or `CITATION.cff` file. You need to fill these in with the author infomation. `CITATION.cff` is the better option because it can be used more widely, but these files are finicky so definitely set up your CITATION file using a cff validator. They are available in Python and R. Do a Google search. Note the the cff version (in the cff file) is important for the validator as versions 1.1, 1.2 and 1.3 have different schema.
+This is taken from the `.zenodo.json` or `CITATION.cff` file. You need to fill these in with the author infomation. `CITATION.cff` is the better option because it can be used more widely, but these files are finicky so definitely set up your CITATION file using a cff validator. They are available in Python and R (e.g. `cffr` in R). Do a Google search. Note the the cff version (in the cff file) is important for the validator as versions 1.1, 1.2 and 1.3 have different schema (schema = names for the entries like 'author', 'title', etc).
 
 ## Troubleshooting Zenodo release fails
 
-1) Go to Zenodo and make sure their is not a draft release. You will need to delete that.
+1) Go to Zenodo and make sure there is not a draft release. If there is, you will need to delete that.
 2) Often a problem with the `.zenodo.json` file will cause failed releases. Go to the Actions tab, click on the failed action and look at the errors.
 3) If you use CITAITON.cff to make the .zenodo.json file. If your CITATION.cff is not valid, then the Zenodo release will fail. Use a separate cff validator like `cffr` in R to check. cff files are very picky and it is easy to have validation issues.
 
